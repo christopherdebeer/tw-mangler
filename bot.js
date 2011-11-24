@@ -72,7 +72,13 @@ function compareTweets (tweets) {
   // console.log("Theirs: ", tweets);
 
   var dif = _.difference(tweets, botsLastTweets);
-  console.log("diff: ", dif);
+
+  // remove @ references (for now) 
+
+  if (dif.length > 0) {
+    var toTweet = dif.map(function(text) {return text.replace("@","+")});
+    toTweet.map(function(t){ tweet(t)});
+  }
   
 }
 
