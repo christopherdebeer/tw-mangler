@@ -30,7 +30,7 @@ var userToReplicate = "christopherdb",
 
 function tweet(text) {
 
-  text = text.replace("@","+","g");
+  text = text.replace("/@/g","+");
 	twitterClient.updateStatus(text,
 	  function(er, resp){
 	    if (!er) {
