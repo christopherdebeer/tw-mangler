@@ -89,8 +89,16 @@ function compareTweets (tweets) {
   
 }
 
+function timedOut () {
+
+  // getTweets(botsScreenName);
+  // getTweets(userToReplicate);
+  console.log("timed out.");
+  setTimeout( timedOut() , 500);
+}
+
+timedOut();
 
 
-getTweets(botsScreenName);
-getTweets(userToReplicate);
+
 
