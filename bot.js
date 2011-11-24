@@ -49,7 +49,7 @@ function getTweets(user) {
 
         // turn into array of just texts
 
-        newtweets = tweets.map(function(t) {return t.text});
+        newtweets = tweets.map(function(t) {return t.text.replace("@","+", "g")});
 
         if (user === botsScreenName) { 
           botsLastTweets = newtweets
