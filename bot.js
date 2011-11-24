@@ -104,11 +104,11 @@ die = false;
 
 ee.on('die', function() {
     die = true;
+    console.log("looped.");
 });
 
 setTimeout(function() {
-    ee.emit('die');
-    console.log("looped.")
+    ee.emit('die');    
 }, 100);
 
 while(!die) {
