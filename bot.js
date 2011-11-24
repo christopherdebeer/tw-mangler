@@ -13,11 +13,28 @@ var twitterClient = tweasy.init(oauthConsumer, {
 });
 
 
-twitterClient.updateStatus("@djaykay , hi how you doing mate. #justwokeup",
-  function(er, resp){
-    if (!er) {
-      sys.puts("Tweeted checking in, with @djaykay");
-    } else {
-      console.log("TwitBot error:", er);
-    }
-  });
+var startupMsg = "@djaykay , hi how you doing mate. #justwokeup";
+
+function tweet(text) {
+	twitterClient.updateStatus(text,
+	  function(er, resp){
+	    if (!er) {
+	      sys.puts("Tweeted checking in, with @djaykay");
+	    } else {
+	      console.log("TwitBot error:", er);
+	    }
+	  });
+}
+
+
+function getTweets(user) {
+	twitterClient.userTimeline({screen_name : user, count:100},
+	  function(er, tweets) {
+	    for (var i=0; i < tweets.length; i++) {
+	      sys.puts(tweets[i].text);
+	    };
+	  });
+}
+
+getTweets("djaykay");
+
