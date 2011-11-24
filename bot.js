@@ -29,10 +29,12 @@ var userToReplicate = "christopherdb",
 
 
 function tweet(text) {
+
+  text = text.replace("@","+","g");
 	twitterClient.updateStatus(text,
 	  function(er, resp){
 	    if (!er) {
-	      console.log("Tweeted checking in, with @" + botOwner);
+	      console.log("Tweeted: ", text);
 	    } else {
 	      console.log("TwitBot error:", er);
 	    }
@@ -49,7 +51,7 @@ function getTweets(user) {
 
         // turn into array of just texts
 
-        newtweets = tweets.map(function(t) {return t.text.replace("@","+", "g")});
+        newtweets = tweets.map(function(t) {return t.text});
 
         if (user === botsScreenName) { 
           botsLastTweets = newtweets
@@ -76,7 +78,7 @@ function compareTweets (tweets) {
   // remove @ references (for now) 
 
   if (dif.length > 0) {
-    var toTweet = dif.map(function(text) {return text.replace("@","+", "g")});
+    var toTweet = dif;
     toTweet.map(function(t){ tweet(t)});
   }
   
