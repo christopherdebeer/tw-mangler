@@ -1,0 +1,20 @@
+{
+  "author": "Christopher de Beer <christopherdebeer@gmail.com>",
+  "name": "ronathanjoss",
+  "description": "I am Ronathan Joss",
+  "version": "0.0.1",
+  "homepage": "http://twitter.com/ronathanjoss",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/christopherdebeer/ronathanjoss.git"
+  },
+  "main": "bot.js",
+  "engines": {
+    "node": "~0.6.2"
+  },
+  "dependencies": {
+    "tweasy": "0.1.2",
+    "oauth": "0.9.5"
+  },
+  "devDependencies": {}
+}
