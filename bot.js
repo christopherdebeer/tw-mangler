@@ -18,31 +18,37 @@ var twitterClient = tweasy.init(oauthConsumer, {
 
 // Settings for Bot
 
+var userToReplicate = "christopherdb",
+    botsScreenName  = "ronathanjoss",
+    botOwner        = "djaykay",
+    startupMsg      = "hmmmm #justwokeup /cc @" + botOwner;
 
-var startupMsg = "hmmmm #justwokeup /cc @djaykay",
-    userToReplicate = "christopherdb";
+
+
+
 
 function tweet(text) {
 	twitterClient.updateStatus(text,
 	  function(er, resp){
 	    if (!er) {
-	      sys.puts("Tweeted checking in, with @djaykay");
+	      console.log("Tweeted checking in, with @" + botOwner);
 	    } else {
 	      console.log("TwitBot error:", er);
 	    }
 	  });
 }
 
-var lastTweet = "";
+var botsLastTweets = {};
 
 
 function getTweets(user) {
 	twitterClient.userTimeline({screen_name : user, count: 20},
 	  function(er, tweets) {
       if (!er) {
-        for (var i=0; i < tweets.length; i++) {
-          sys.puts(tweets[i].text);
-        };
+        if (user === botsScreenName) { botsLastTweets = tweets}
+        else {
+          compareTweets(tweets);
+        }
       } else {
         console.log("Error: ", er);
         tweet("RUH ROH!, I can haz Error.")
@@ -51,5 +57,16 @@ function getTweets(user) {
 	  });
 }
 
+
+function compareTweets (tweets) {
+
+  console.log("Mine: ", botsLastTweets );
+  console.log("Theirs: ", tweets);
+  
+}
+
+
+
+getTweets(botsScreenName);
 getTweets(userToReplicate);
 
