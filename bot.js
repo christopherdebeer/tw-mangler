@@ -93,10 +93,29 @@ function timedOut () {
 
   // getTweets(botsScreenName);
   // getTweets(userToReplicate);
-  setTimeout( timedOut(), 3600000);
+  // setTimeout( timedOut(), 3600000);
 }
 
-timedOut();
+
+EE = require('events').EventEmitter;
+ee = new EE();
+
+die = false;
+
+ee.on('die', function() {
+    die = true;
+});
+
+setTimeout(function() {
+    ee.emit('die');
+    console.log("looped.")
+}, 100);
+
+while(!die) {
+}
+
+console.log('done');
+
 
 
 
