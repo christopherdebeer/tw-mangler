@@ -1,6 +1,7 @@
 var sys = require('sys'),
     tweasy = require("tweasy"),
-    OAuth = require("oauth").OAuth;
+    OAuth = require("oauth").OAuth,
+    _ = require('underscore');
 
 
 var oauthConsumer = new OAuth(
@@ -67,8 +68,11 @@ function getTweets(user) {
 
 function compareTweets (tweets) {
 
-  console.log("Mine: ", botsLastTweets );
-  console.log("Theirs: ", tweets);
+  // console.log("Mine: ", botsLastTweets );
+  // console.log("Theirs: ", tweets);
+
+  var dif = _.difference(tweets, botsLastTweets);
+  console.log("diff: ", dif);
   
 }
 
