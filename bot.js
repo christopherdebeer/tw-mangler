@@ -103,13 +103,14 @@ ee = new EE();
 die = false;
 
 ee.on('die', function() {
-    die = true;
     console.log("looped.");
+    die = true;
 });
 
 setTimeout(function() {
-    ee.emit('die');    
-}, 100);
+    ee.emit('die');
+    console.log("looped.");    
+}, 1000);
 
 while(!die) {
 }
