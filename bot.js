@@ -30,11 +30,11 @@ var userToReplicate = "christopherdb",
 
 function tweet(text) {
 
-  text = text.replace("/@/g","+");
-	twitterClient.updateStatus(text,
+  var safeText = text.replace(/@/g,"+");
+	twitterClient.updateStatus(safeText,
 	  function(er, resp){
 	    if (!er) {
-	      console.log("Tweeted: ", text);
+	      console.log("Tweeted: ", safeText);
 	    } else {
 	      console.log("TwitBot error:", er);
 	    }
