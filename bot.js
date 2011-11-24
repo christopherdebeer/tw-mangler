@@ -13,7 +13,7 @@ var twitterClient = tweasy.init(oauthConsumer, {
 });
 
 
-var startupMsg = "@djaykay , hi how you doing mate. #justwokeup";
+var startupMsg = "hmmmm #justwokeup /cc @djaykay";
 
 function tweet(text) {
 	twitterClient.updateStatus(text,
@@ -44,5 +44,5 @@ function getTweets(user) {
 	  });
 }
 
-getTweets("djaykay");
+getTweets("christopherdb");
 
