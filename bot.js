@@ -45,9 +45,16 @@ function getTweets(user) {
 	twitterClient.userTimeline({screen_name : user, count: 20},
 	  function(er, tweets) {
       if (!er) {
-        if (user === botsScreenName) { botsLastTweets = tweets}
+
+        // turn into array of just texts
+
+        newtweets = tweets.map(function(t) {return t.text});
+
+        if (user === botsScreenName) { 
+          botsLastTweets = newtweets
+        }
         else {
-          compareTweets(tweets);
+          compareTweets(newtweets);
         }
       } else {
         console.log("Error: ", er);
