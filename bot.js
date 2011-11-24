@@ -1,19 +1,26 @@
-var sys = require('sys')
-  , tweasy = require("tweasy")
-  , OAuth = require("oauth").OAuth
-  ;
+var sys = require('sys'),
+    tweasy = require("tweasy"),
+    OAuth = require("oauth").OAuth;
+
+
 var oauthConsumer = new OAuth(
     "http://twitter.com/oauth/request_token",
     "http://twitter.com/oauth/access_token", 
     "dpWq5IKoWJTHv3RRhL9Lrg", "vUk3pa2ZUW1h4gDewvNsu8uKVIKC1Tj51iPOs5Gc", 
     "1.0", null, "HMAC-SHA1");
+
+
 var twitterClient = tweasy.init(oauthConsumer, {
   access_token : "420351901-R3fxM6UNkJe4HbETFIzuLgkm7tfNUSHFU1BZhpM",
   access_token_secret : "aUsYRqdIidhRDGtkizbLIQyCWRsfSVYHZ9jTVAWsow"
 });
 
 
-var startupMsg = "hmmmm #justwokeup /cc @djaykay";
+// Settings for Bot
+
+
+var startupMsg = "hmmmm #justwokeup /cc @djaykay",
+    userToReplicate = "christopherdb";
 
 function tweet(text) {
 	twitterClient.updateStatus(text,
@@ -44,5 +51,5 @@ function getTweets(user) {
 	  });
 }
 
-getTweets("christopherdb");
+getTweets(userToReplicate);
 
