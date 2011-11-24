@@ -22,7 +22,8 @@ var twitterClient = tweasy.init(oauthConsumer, {
 var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
-    startupMsg      = "hmmmm #justwokeup /cc @" + botOwner;
+    startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
+    replaceAts      = true;
 
 
 
@@ -30,7 +31,11 @@ var userToReplicate = "christopherdb",
 
 function tweet(text) {
 
-  var safeText = text.replace(/@/g,"+");
+  if (replaceAts) {
+    var safeText = text.replace(/@/g,"+");
+  } else {
+    safeText = text;
+  }
 	twitterClient.updateStatus(safeText,
 	  function(er, resp){
 	    if (!er) {
