@@ -76,7 +76,7 @@ function compareTweets (tweets) {
   // remove @ references (for now) 
 
   if (dif.length > 0) {
-    var toTweet = dif.map(function(text) {return text.replace("@","+")});
+    var toTweet = dif.map(function(text) {return text.replace("@","+", "g")});
     toTweet.map(function(t){ tweet(t)});
   }
   
