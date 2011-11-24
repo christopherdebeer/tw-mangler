@@ -26,13 +26,21 @@ function tweet(text) {
 	  });
 }
 
+var lastTweet = "";
+
 
 function getTweets(user) {
-	twitterClient.userTimeline({screen_name : user, count:100},
+	twitterClient.userTimeline({screen_name : user, count: 20},
 	  function(er, tweets) {
-	    for (var i=0; i < tweets.length; i++) {
-	      sys.puts(tweets[i].text);
-	    };
+      if (!er) {
+        for (var i=0; i < tweets.length; i++) {
+          sys.puts(tweets[i].text);
+        };
+      } else {
+        console.log("Error: ", er);
+        tweet("RUH ROH!, I can haz Error.")
+      }
+	    
 	  });
 }
 
