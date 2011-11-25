@@ -99,7 +99,7 @@ ee.on('checkTweets', function() {
   // getTweets(userToReplicate);
 });
 
-setTimeout(function() {
+setInterval ( function (){
     ee.emit('checkTweets');    
 }, 1000);
 
