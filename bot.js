@@ -94,14 +94,15 @@ function compareTweets (tweets) {
 // on checkTweets
 
 ee.on('checkTweets', function() {
-  console.log("runnned.")
+
+  console.log("Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ". [" + Date.now(); + "]")
   // getTweets(botsScreenName);
   // getTweets(userToReplicate);
 });
 
 setInterval ( function (){
     ee.emit('checkTweets');    
-}, 1000);
+}, 5000);
 
 
 
