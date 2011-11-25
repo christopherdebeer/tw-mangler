@@ -13,9 +13,9 @@ var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
-    mangleFrom      = /r/g,
-    mangleTo        = "w",
     replaceAts      = true;
+
+var doneTweets = [];
 
 
 
@@ -53,7 +53,8 @@ function mangle(text) {
   var mangled = words.map(function(word){
 
     if (!isHashtag(word) && !isAtName(word) && !isURL(word)) {
-      word = word.replace(mangleFrom, mangleTo);
+      word = word.replace(/r/g, "w");
+      word = word.replace(/R/g, "W");
     }
 
     return word;
@@ -66,7 +67,8 @@ function mangle(text) {
 
 function tweet(text) {
 
-
+  doneTweets.push(text);
+  
   var safeText;
   if (replaceAts) {
     safeText = mangle(text).replace(/@/g,"+");
@@ -75,18 +77,17 @@ function tweet(text) {
   } 
 
 
-	twitterClient.updateStatus(safeText,
-	  function(er, resp){
+  twitterClient.updateStatus(safeText,
+    function(er, resp){
      now = new Date();
-	    if (!er) {
-	      console.log("[" + now.toUTCString() + "] Tweeted: ", safeText);
-	    } else {
-	      console.log("[" + now.toUTCString() + "] TwitBot error:", er);
-	    }
-	  });
+      if (!er) {
+        console.log("[" + now.toUTCString() + "] Tweeted: ", safeText);
+      } else {
+        console.log("[" + now.toUTCString() + "] TwitBot error:", er);
+      }
+    });
 }
 
-var botsLastTweets = {};
 
 
 function getTweets(user) {
@@ -97,13 +98,8 @@ function getTweets(user) {
         // turn into array of just texts
         now = new Date();
         newtweets = tweets.map(function(t) {return t.text});
+        compareTweets(newtweets);
 
-        if (user === botsScreenName) { 
-          botsLastTweets = newtweets
-        }
-        else {
-          compareTweets(newtweets);
-        }
       } else {
         console.log("[" + now.toUTCString() + "] Error: ", er);
         tweet("RUH ROH!, I can haz Error.");
@@ -115,12 +111,9 @@ function getTweets(user) {
 
 function compareTweets (tweets) {
 
-  // console.log("Mine: ", botsLastTweets );
-  // console.log("Theirs: ", tweets);
 
-  var dif = _.difference(tweets, botsLastTweets);
 
-  // remove @ references (for now) 
+  var dif = _.difference(tweets, doneTweets);
 
   if (dif.length > 0) {
     var toTweet = dif;
@@ -137,7 +130,6 @@ ee.on('checkTweets', function() {
 
   now = new Date();
   console.log("[" + now.toUTCString() + "] Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ".")
-  getTweets(botsScreenName);
   getTweets(userToReplicate);
 
 });
