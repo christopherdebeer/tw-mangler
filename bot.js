@@ -1,7 +1,19 @@
-var sys = require('sys'),
-    tweasy = require("tweasy"),
-    OAuth = require("oauth").OAuth,
-    _ = require('underscore');
+var sys     = require('sys'),
+    tweasy  = require("tweasy"),
+    OAuth   = require("oauth").OAuth,
+    _       = require('underscore'),
+    EE      = require('events').EventEmitter.
+    ee      = new EE();
+
+
+// Settings for Bot
+
+var userToReplicate = "christopherdb",
+    botsScreenName  = "ronathanjoss",
+    botOwner        = "djaykay",
+    startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
+    replaceAts      = true;
+
 
 
 var oauthConsumer = new OAuth(
@@ -15,19 +27,6 @@ var twitterClient = tweasy.init(oauthConsumer, {
   access_token : "420351901-R3fxM6UNkJe4HbETFIzuLgkm7tfNUSHFU1BZhpM",
   access_token_secret : "aUsYRqdIidhRDGtkizbLIQyCWRsfSVYHZ9jTVAWsow"
 });
-
-
-// Settings for Bot
-
-var userToReplicate = "christopherdb",
-    botsScreenName  = "ronathanjoss",
-    botOwner        = "djaykay",
-    startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
-    replaceAts      = true;
-
-
-
-
 
 function tweet(text) {
 
@@ -90,34 +89,23 @@ function compareTweets (tweets) {
 }
 
 function timedOut () {
-
-  // getTweets(botsScreenName);
-  // getTweets(userToReplicate);
+  
   // setTimeout( timedOut(), 3600000);
 }
 
 
-EE = require('events').EventEmitter;
-ee = new EE();
 
-die = false;
+// on
 
-ee.on('die', function() {
-    console.log("looped.");
-    die = true;
+ee.on('checkTweets', function() {
+  console.log("runnned.")
+  // getTweets(botsScreenName);
+  // getTweets(userToReplicate);
 });
 
 setTimeout(function() {
-    ee.emit('die');
-    console.log("looped.");    
+    ee.emit('checkTweets');    
 }, 1000);
-
-while(!die) {
-}
-
-console.log('done');
-
-
 
 
 
