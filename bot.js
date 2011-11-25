@@ -95,7 +95,7 @@ function compareTweets (tweets) {
 
 ee.on('checkTweets', function() {
 
-  console.log("Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ". [" + Date.now(); + "]")
+  console.log("Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ". [" + Date.now() + "]")
   // getTweets(botsScreenName);
   // getTweets(userToReplicate);
 });
