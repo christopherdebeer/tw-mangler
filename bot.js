@@ -13,7 +13,7 @@ var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
-    mangleFrom      = /ssdsd/g,
+    mangleFrom      = /r/g,
     mangleTo        = "w",
     replaceAts      = true;
 
