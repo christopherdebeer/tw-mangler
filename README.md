@@ -19,3 +19,4 @@
 * mangle settings ie: "r" -> "w"
 * bot owner
 * blah blah
+* set whether to replace "@" symbols with "+" (for testing etc etc)
