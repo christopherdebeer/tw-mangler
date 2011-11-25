@@ -9,9 +9,11 @@
 * `git clone git://github.com/christopherdebeer/ronathanjoss.git`
 * `cd ronathanjoss`
 * `npm install`
-* `node bot.js`
-* done
+* done (remomber to change the setup/settings)
 
+**To Run**
+
+* `node bot.js`
 
 **Settings**
 
