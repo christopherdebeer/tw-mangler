@@ -13,7 +13,8 @@ var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
-    mangleTweet     = /ssdsd/g,
+    mangleFrom      = /ssdsd/g,
+    mangleTo        = "w",
     replaceAts      = true;
 
 
@@ -30,13 +31,50 @@ var twitterClient = tweasy.init(oauthConsumer, {
   access_token_secret : "aUsYRqdIidhRDGtkizbLIQyCWRsfSVYHZ9jTVAWsow"
 });
 
+
+
+
+function isHashtag(word) {
+  if (/^#\S+/.test(word)) return true;
+  return false;
+}
+function isAtName(word) {
+  if (/^@\S+/.test(word)) return true;
+  return false;
+}
+function isURL(word) {
+  if (/\S+\.\S{2,5}\S*/.test(word)) return true;
+  return false;
+}
+
+function mangle(text) {
+
+  var words = text.split(" ");
+  words.map(function(word){
+
+    if (!isHashtag(word) && !isAtName(word) && !isURL(word)) {
+      word = word.replace(mangleFrom, mangleTo);
+    }
+
+    return word;
+
+  });
+
+  return words.join(" ");
+}
+
+
 function tweet(text) {
 
+
+  var safeText;
   if (replaceAts) {
-    var safeText = text.replace(/@/g,"+");
+    safeText = mangle(text).replace(/@/g,"+");
   } else {
-    safeText = text;
-  }
+    safeText = mangle(text);
+  } 
+
+
 	twitterClient.updateStatus(safeText,
 	  function(er, resp){
      now = new Date();
@@ -68,7 +106,7 @@ function getTweets(user) {
         }
       } else {
         console.log("[" + now.toUTCString() + "] Error: ", er);
-        tweet("RUH ROH!, I can haz Error.")
+        tweet("RUH ROH!, I can haz Error.");
       }
 	    
 	  });
@@ -106,13 +144,14 @@ ee.on('checkTweets', function() {
 
 setInterval ( function (){
     ee.emit('checkTweets');    
-}, 3600000);
+}, 30000);
 
 
 
 // init
 now = new Date();
-console.log("[" + now.toUTCString() + "] " + botsScreenName + ":BOT Started.")
+console.log("[" + now.toUTCString() + "] " + botsScreenName + ":BOT Started.");
+tweet(startupMsg);
 
 
 
