@@ -3,7 +3,8 @@ var sys     = require('sys'),
     OAuth   = require("oauth").OAuth,
     _       = require('underscore'),
     EE      = require('events').EventEmitter,
-    ee      = new EE();
+    ee      = new EE(),
+    now;
 
 
 // Settings for Bot
@@ -38,10 +39,11 @@ function tweet(text) {
   }
 	twitterClient.updateStatus(safeText,
 	  function(er, resp){
+     now = new Date();
 	    if (!er) {
-	      console.log("[" + Date.now().toUTCString() + "] Tweeted: ", safeText);
+	      console.log("[" + now.toUTCString() + "] Tweeted: ", safeText);
 	    } else {
-	      console.log("[" + Date.now().toUTCString() + "] TwitBot error:", er);
+	      console.log("[" + now.toUTCString() + "] TwitBot error:", er);
 	    }
 	  });
 }
@@ -55,7 +57,7 @@ function getTweets(user) {
       if (!er) {
 
         // turn into array of just texts
-
+        now = new Date();
         newtweets = tweets.map(function(t) {return t.text});
 
         if (user === botsScreenName) { 
@@ -65,7 +67,7 @@ function getTweets(user) {
           compareTweets(newtweets);
         }
       } else {
-        console.log("[" + Date.now().toUTCString() + "] Error: ", er);
+        console.log("[" + now.toUTCString() + "] Error: ", er);
         tweet("RUH ROH!, I can haz Error.")
       }
 	    
@@ -95,7 +97,8 @@ function compareTweets (tweets) {
 
 ee.on('checkTweets', function() {
 
-  console.log("[" + Date.now().toUTCString() + "] Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ".")
+  now = new Date();
+  console.log("[" + now.toUTCString() + "] Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ".")
   getTweets(botsScreenName);
   getTweets(userToReplicate);
 
@@ -108,8 +111,8 @@ setInterval ( function (){
 
 
 // init
-
-console.log("[" + Date.now().toUTCString() + "] " + botsScreenName + ":BOT Started.")
+now = new Date();
+console.log("[" + now.toUTCString() + "] " + botsScreenName + ":BOT Started.")
 
 
 
