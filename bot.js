@@ -39,9 +39,9 @@ function tweet(text) {
 	twitterClient.updateStatus(safeText,
 	  function(er, resp){
 	    if (!er) {
-	      console.log("Tweeted: ", safeText);
+	      console.log("[" + Date.now().toUTCString() + "] Tweeted: ", safeText);
 	    } else {
-	      console.log("TwitBot error:", er);
+	      console.log("[" + Date.now().toUTCString() + "] TwitBot error:", er);
 	    }
 	  });
 }
@@ -65,7 +65,7 @@ function getTweets(user) {
           compareTweets(newtweets);
         }
       } else {
-        console.log("Error: ", er);
+        console.log("[" + Date.now().toUTCString() + "] Error: ", er);
         tweet("RUH ROH!, I can haz Error.")
       }
 	    
@@ -95,14 +95,21 @@ function compareTweets (tweets) {
 
 ee.on('checkTweets', function() {
 
-  console.log("Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ". [" + Date.now() + "]")
-  // getTweets(botsScreenName);
-  // getTweets(userToReplicate);
+  console.log("[" + Date.now().toUTCString() + "] Checking @" + userToReplicate + " and tweeting as @" + botsScreenName + ".")
+  getTweets(botsScreenName);
+  getTweets(userToReplicate);
+
 });
 
 setInterval ( function (){
     ee.emit('checkTweets');    
-}, 5000);
+}, 3600000);
+
+
+
+// init
+
+console.log("[" + Date.now().toUTCString() + "] " + botsScreenName + ":BOT Started.")
 
 
 
