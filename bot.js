@@ -50,7 +50,7 @@ function isURL(word) {
 function mangle(text) {
 
   var words = text.split(" ");
-  words.map(function(word){
+  var mangled = words.map(function(word){
 
     if (!isHashtag(word) && !isAtName(word) && !isURL(word)) {
       word = word.replace(mangleFrom, mangleTo);
@@ -60,7 +60,7 @@ function mangle(text) {
 
   });
 
-  return words.join(" ");
+  return mangled.join(" ");
 }
 
 
