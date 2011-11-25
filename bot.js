@@ -2,7 +2,7 @@ var sys     = require('sys'),
     tweasy  = require("tweasy"),
     OAuth   = require("oauth").OAuth,
     _       = require('underscore'),
-    EE      = require('events').EventEmitter.
+    EE      = require('events').EventEmitter,
     ee      = new EE();
 
 
@@ -12,6 +12,7 @@ var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
+    mangleTweet     = /ssdsd/g,
     replaceAts      = true;
 
 
@@ -88,14 +89,9 @@ function compareTweets (tweets) {
   
 }
 
-function timedOut () {
-  
-  // setTimeout( timedOut(), 3600000);
-}
 
 
-
-// on
+// on checkTweets
 
 ee.on('checkTweets', function() {
   console.log("runnned.")
