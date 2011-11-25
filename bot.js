@@ -13,6 +13,7 @@ var userToReplicate = "christopherdb",
     botsScreenName  = "ronathanjoss",
     botOwner        = "djaykay",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
+    intervalInMS    = 3600000,
     replaceAts      = true;
 
 var doneTweets = [];
@@ -136,7 +137,7 @@ ee.on('checkTweets', function() {
 
 setInterval ( function (){
     ee.emit('checkTweets');    
-}, 30000);
+}, intervalInMS);
 
 
 

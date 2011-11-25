@@ -9,7 +9,7 @@
 * `git clone git://github.com/christopherdebeer/ronathanjoss.git`
 * `cd ronathanjoss`
 * `npm install`
-* done (remomber to change the setup/settings)
+* done (remember to change the setup/settings)
 
 **To Run**
 
@@ -19,6 +19,7 @@
 
 * twitter user to replicate
 * mangle settings ie: "r" -> "w"
+* intervalInMS -> how often to check for new tweets to mangle
 * bot owner
 * blah blah
 * set whether to replace "@" symbols with "+" (for testing etc etc)
