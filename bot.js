@@ -9,9 +9,9 @@ var sys     = require('sys'),
 
 // Settings for Bot
 
-var userToReplicate = "christopherdb",
-    botsScreenName  = "ronathanjoss",
-    botOwner        = "djaykay",
+var userToReplicate = "...",
+    botsScreenName  = "...",
+    botOwner        = "...",
     startupMsg      = "hmmmm #justwokeup /cc @" + botOwner,
     intervalInMS    = 3600000,
     replaceAts      = true;
