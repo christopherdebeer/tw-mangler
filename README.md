@@ -1,4 +1,4 @@
-@RonathanJoss Bot
+tw-mangler
 =================
 
 
@@ -6,8 +6,8 @@
 
 * install [node.js](http://nodejs.org)
 * install [npm](http://npmjs.org)
-* `git clone git://github.com/christopherdebeer/ronathanjoss.git`
-* `cd ronathanjoss`
+* `git clone git://github.com/christopherdebeer/tw-mangler.git`
+* `cd tw-mangler`
 * `npm install`
 * done (remember to change the setup/settings)
 

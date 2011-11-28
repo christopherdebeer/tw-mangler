@@ -1,12 +1,12 @@
 {
   "author": "Christopher de Beer <christopherdebeer@gmail.com>",
-  "name": "ronathanjoss",
-  "description": "I am Ronathan Joss",
+  "name": "tw-mangler",
+  "description": "a twitter user mimicer/mangler",
   "version": "0.0.1",
   "homepage": "http://twitter.com/ronathanjoss",
   "repository": {
     "type": "git",
-    "url": "git://github.com/christopherdebeer/ronathanjoss.git"
+    "url": "git://github.com/christopherdebeer/tw-mangler.git"
   },
   "main": "bot.js",
   "engines": {
